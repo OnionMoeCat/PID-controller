@@ -34,6 +34,3 @@ Hyperparameters were tuned manually at first. This was necessary because the nar
 
 I also implemented a PID controller for the throttle. The throttle PID controller is fed the magnitude of the CTE because it doesn't make sense to throttle up for right-side CTE and down for left-side CTE, for example. For this reason the throttle controller doesn't include an I component, which would only grow indefinitely.
 
-The final parameters:
-For steering PID controller: (P:0.1346, I:0.0027, D:2.55)
-For throttle PID controller: (P:0.316, I:0, D:0.226)
