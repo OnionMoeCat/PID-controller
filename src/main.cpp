@@ -36,14 +36,14 @@ int main() {
   double Kp_steering = 0.1346;
   double Ki_steering = 0.00027;
   //double Ki_steering = 0;
-  double Kd_steering = 2.55;
+  double Kd_steering = 2.805;
   //double Kd_steering = 0;
   PID pid_steering;
   pid_steering.Init(Kp_steering, Ki_steering, Kd_steering);
   
-  double Kp_throttle = 0.316;
+  double Kp_throttle = 0.256;
   double Ki_throttle = 0;
-  double Kd_throttle = 0.0226;
+  double Kd_throttle = 0.02486;
   PID pid_throttle;
   pid_throttle.Init(Kp_throttle, Ki_throttle, Kd_throttle);
 
@@ -76,14 +76,14 @@ int main() {
           double throttle_value = 0.55 + pid_throttle.TotalError();          
           
           // DEBUG
-          std::cout << "CTE: " << cte << " Steering Value: " << steer_value << " Raw Steering Value: " << raw_steer_value
-                    << " Throttle Value: " << throttle_value << " speed: " << speed <<  " angle: " << angle << std::endl;
+          //std::cout << "CTE: " << cte << " Steering Value: " << steer_value << " Raw Steering Value: " << raw_steer_value
+          //          << " Throttle Value: " << throttle_value << " speed: " << speed <<  " angle: " << angle << std::endl;
 
           json msgJson;
           msgJson["steering_angle"] = steer_value;
           msgJson["throttle"] = throttle_value;
           auto msg = "42[\"steer\"," + msgJson.dump() + "]";
-          std::cout << msg << std::endl;
+          //std::cout << msg << std::endl;
           ws.send(msg.data(), msg.length(), uWS::OpCode::TEXT);
         }  // end "telemetry" if
       } else {

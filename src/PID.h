@@ -1,7 +1,7 @@
 #ifndef PID_H
 #define PID_H
 
-#include <deque>
+#include <vector>
 
 class PID {
  public:
@@ -53,6 +53,23 @@ class PID {
   double prev_cte;
   
   bool first_frame;
+  
+  
+  /*
+  * Twiddle variables
+  */
+  std::vector<double> dp;
+  int step, param_index;
+  // number of steps to allow changes to settle, then to evaluate error
+  int n_settle_steps, n_eval_steps;
+  double total_error, best_error;
+  bool tried_adding, tried_subtracting, yes_i_wanna_twiddle;  
+  
+  
+  /*
+  * Convenience function for adding amount (dp) to a PID controller parameter based on index
+  */
+  void AddToParameterAtIndex(int index, double amount);
 };
 
 #endif  // PID_H
